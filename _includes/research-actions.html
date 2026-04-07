@@ -1,0 +1,22 @@
+{% assign item = include.item %}
+
+{% if item.citation or item.paperurl or item.slidesurl or item.bibtexurl or item.link %}
+  <div class="research-actions">
+    {% if item.paperurl %}
+      <a class="research-action" href="{{ item.paperurl }}">Paper</a>
+    {% endif %}
+    {% if item.slidesurl %}
+      <a class="research-action" href="{{ item.slidesurl }}">Slides</a>
+    {% endif %}
+    {% if item.bibtexurl %}
+      <a class="research-action" href="{{ item.bibtexurl }}">BibTeX</a>
+    {% endif %}
+    {% if item.link %}
+      <a class="research-action" href="{{ item.link }}">{{ site.data.ui-text[site.locale].ext_link_label | default: "Link" }}</a>
+    {% endif %}
+  </div>
+{% endif %}
+
+{% if item.citation %}
+  <p class="research-citation">Recommended citation: {{ item.citation }}</p>
+{% endif %}

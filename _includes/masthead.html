@@ -2,11 +2,14 @@
 <div class="masthead">
   <div class="masthead__inner-wrap">
     <div class="masthead__menu">
-      <nav id="site-nav" class="greedy-nav">
-        <button><span class="navicon"></span></button>
+      <nav id="site-nav" class="greedy-nav greedy-nav--static">
+        <button aria-label="Toggle navigation"><span class="navicon"></span></button>
         <ul class="visible-links">
           <li class="masthead__menu-item masthead__menu-item--lg persist {% if page.url == '/' or page.url == '/index.html' %}selected{% endif %}">
-            <a href="{{ base_path }}/">{{ site.title }}</a>
+            <a href="{{ base_path }}/">
+              <span class="masthead__brand-mark"></span>
+              <span class="masthead__brand-text">{{ site.title }}</span>
+            </a>
           </li>
           {% for link in site.data.navigation.main %}
             {% if link.url contains 'http' %}
@@ -14,8 +17,28 @@
             {% else %}
               {% assign domain = base_path %}
             {% endif %}
-            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}">
-              <a href="{{ domain }}{{ link.url }}">{{ link.title }}</a>
+            {% assign nav_icon = 'fa-circle' %}
+            {% case link.title %}
+              {% when 'News' %}
+                {% assign nav_icon = 'fa-bolt' %}
+              {% when 'Education' %}
+                {% assign nav_icon = 'fa-graduation-cap' %}
+              {% when 'Publications' %}
+                {% assign nav_icon = 'fa-book-open' %}
+              {% when 'Projects' %}
+                {% assign nav_icon = 'fa-diagram-project' %}
+              {% when 'Experience' %}
+                {% assign nav_icon = 'fa-briefcase' %}
+              {% when 'Blog Posts' %}
+                {% assign nav_icon = 'fa-pen-nib' %}
+              {% when 'CV' %}
+                {% assign nav_icon = 'fa-file-lines' %}
+            {% endcase %}
+            <li class="masthead__menu-item {% if page.url contains link.url and link.url != '/' %}selected{% endif %}{% if link.title == 'CV' %} masthead__menu-item--cta{% endif %}">
+              <a href="{{ domain }}{{ link.url }}">
+                <span class="masthead__menu-icon" aria-hidden="true"><i class="fa-solid {{ nav_icon }}"></i></span>
+                <span>{{ link.title }}</span>
+              </a>
             </li>
           {% endfor %}
           <li id="theme-toggle" class="masthead__menu-item persist tail">

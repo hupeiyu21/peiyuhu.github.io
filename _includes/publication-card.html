@@ -1,0 +1,111 @@
+{% include base_path %}
+
+{% assign image = post.image | default: post.header.teaser %}
+{% assign summary = post.summary | default: post.excerpt %}
+{% assign venue = post.venue | default: post.journal %}
+{% assign year = post.year | default: post.date | date: "%Y" %}
+{% assign venue_slug = venue | default: "" | downcase | replace: " ", "-" %}
+
+{% assign citation_plain = post.citation | default: "" | replace: "&quot;", '"' | strip_html | strip %}
+{% assign authors = post.authors | default: "" %}
+{% if authors == "" and citation_plain != "" %}
+  {% assign authors = citation_plain | split: "(" | first | strip %}
+{% endif %}
+
+{% assign venue_display = venue %}
+{% if year and year != "" and venue_display %}
+  {% assign year_token = " " | append: year %}
+  {% assign venue_display = venue_display | replace: year_token, "" | strip %}
+{% endif %}
+
+<article class="publication-card" itemscope itemtype="http://schema.org/ScholarlyArticle">
+  <a class="publication-card__media{% unless image %} publication-card__media--fallback{% endunless %}" href="{{ base_path }}{{ post.url }}" aria-label="{{ post.title }}">
+    {% if image %}
+      <img
+        src="{% if image contains '://' %}{{ image }}{% else %}{{ image | prepend: base_path }}{% endif %}"
+        alt="{{ post.title }}"
+        loading="lazy">
+    {% else %}
+      <div class="publication-card__placeholder" aria-hidden="true">
+        <span class="publication-card__placeholder-icon">∿</span>
+        <span class="publication-card__placeholder-text">{{ venue | default: "Publication" }}</span>
+      </div>
+    {% endif %}
+  </a>
+
+  <div class="publication-card__body">
+    <div class="publication-card__header">
+      <div class="publication-card__meta">
+        {% if venue_display %}
+          <span class="publication-card__venue publication-card__venue--{{ venue_slug }}">{{ venue_display }}</span>
+        {% endif %}
+        {% if post.ccf %}
+          {% assign ccf_class = post.ccf | downcase | replace: " ", "-" %}
+          <span class="publication-card__ccf publication-card__ccf--{{ ccf_class }}">{{ post.ccf }}</span>
+        {% endif %}
+        {% if year and year != "" %}
+          <span class="publication-card__year">{{ year }}</span>
+        {% endif %}
+      </div>
+
+      {% if post.tags[0] %}
+        <div class="publication-card__tags">
+          {% for tag in post.tags limit: 5 %}
+            <span class="publication-card__tag">{{ tag }}</span>
+          {% endfor %}
+        </div>
+      {% endif %}
+    </div>
+
+    <h3 class="publication-card__title" itemprop="headline">
+      <a href="{{ base_path }}{{ post.url }}">{{ post.title | markdownify | remove: "<p>" | remove: "</p>" }}</a>
+    </h3>
+
+    {% if authors != "" %}
+      <p class="publication-card__authors">{{ authors }}</p>
+    {% endif %}
+
+    {% if summary %}
+      <p class="publication-card__summary">{{ summary | markdownify | strip_html | truncate: 180 }}</p>
+    {% endif %}
+
+    <div class="publication-card__actions">
+      {% if post.github %}
+        <a class="publication-button publication-button--github" href="{{ post.github }}" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-github" aria-hidden="true"></i>
+          <span>GitHub</span>
+        </a>
+      {% endif %}
+      {% if post.arxiv %}
+        <a class="publication-button publication-button--arxiv" href="{{ post.arxiv }}" target="_blank" rel="noopener noreferrer">
+          <i class="ai ai-arxiv" aria-hidden="true"></i>
+          <span>arXiv</span>
+        </a>
+      {% endif %}
+      {% if post.paperurl %}
+        <a class="publication-button publication-button--paper" href="{{ post.paperurl }}">
+          <i class="fa fa-file-lines" aria-hidden="true"></i>
+          <span>Paper</span>
+        </a>
+      {% endif %}
+      {% if post.project %}
+        <a class="publication-button publication-button--project" href="{{ post.project }}">
+          <i class="fa fa-arrow-up-right-from-square" aria-hidden="true"></i>
+          <span>Project</span>
+        </a>
+      {% endif %}
+      {% if post.slidesurl %}
+        <a class="publication-button publication-button--slides" href="{{ post.slidesurl }}">
+          <i class="fa fa-presentation-screen" aria-hidden="true"></i>
+          <span>Slides</span>
+        </a>
+      {% endif %}
+      {% if post.bibtexurl %}
+        <a class="publication-button publication-button--bibtex" href="{{ post.bibtexurl }}">
+          <i class="fa fa-quote-right" aria-hidden="true"></i>
+          <span>BibTeX</span>
+        </a>
+      {% endif %}
+    </div>
+  </div>
+</article>

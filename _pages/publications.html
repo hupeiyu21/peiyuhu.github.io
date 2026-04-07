@@ -2,8 +2,10 @@
 layout: archive
 title: "Publications"
 permalink: /publications/
-author_profile: true
+author_profile: false
 ---
+
+<p class="section-intro">Selected papers on generative recommendation, semantic tokenization, and LLM-enhanced recommender systems. The content still comes directly from the <code>_publications</code> collection while the interface emphasizes fast scanning and strong metadata hierarchy.</p>
 
 {% if site.author.googlescholar %}
   <div class="wordwrap">You can also find my articles on <a href="{{site.author.googlescholar}}">my Google Scholar profile</a>.</div>
@@ -15,22 +17,30 @@ author_profile: true
 {% if site.publication_category %}
   {% for category in site.publication_category  %}
     {% assign title_shown = false %}
+    {% capture cards %}
     {% for post in site.publications reversed %}
       {% if post.category != category[0] %}
         {% continue %}
       {% endif %}
-      {% unless title_shown %}
-        <h2>{{ category[1].title }}</h2><hr />
-        {% assign title_shown = true %}
-      {% endunless %}
-      {% include archive-single.html %}
+      {% assign title_shown = true %}
+      {% include publication-card.html %}
     {% endfor %}
+    {% endcapture %}
+    {% if title_shown %}
+      <section class="publications-section">
+        <h2 class="publications-section__title">{{ category[1].title }}</h2>
+        <div class="publications-grid">
+          {{ cards }}
+        </div>
+      </section>
+    {% endif %}
   {% endfor %}
 {% else %}
-  {% for post in site.publications reversed %}
-    {% include archive-single.html %}
-  {% endfor %}
+  <section class="publications-section">
+    <div class="publications-grid">
+      {% for post in site.publications reversed %}
+        {% include publication-card.html %}
+      {% endfor %}
+    </div>
+  </section>
 {% endif %}
-
-
-

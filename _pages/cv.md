@@ -2,7 +2,7 @@
 layout: archive
 title: "CV"
 permalink: /cv/
-author_profile: true
+author_profile: false
 redirect_from:
   - /resume
 ---
@@ -11,54 +11,50 @@ redirect_from:
 
 Education
 ======
-* Ph.D in Version Control Theory, GitHub University, 2018 (expected)
-* M.S. in Jekyll, GitHub University, 2014
-* B.S. in GitHub, GitHub University, 2012
+* **University of Liverpool**, Ph.D. in Computer Science, Mar 2026 - Present
+  * Incoming doctoral study in computer science with a planned focus on recommendation systems, foundation models, and machine learning systems
+
+* **Xi'an Jiaotong-Liverpool University**, B.Sc. in Information and Computing Science, Sep 2021 - Jul 2025
+  * GPA: 3.8/4.0, top 5% in the major
+  * University scholarship recipient for two consecutive years
+  * Selected coursework: Algorithms and Data Structures, Artificial Intelligence, Machine Learning, Big Data Analytics
 
 Work experience
 ======
-* Spring 2024: Academic Pages Collaborator
-  * GitHub University
-  * Duties includes: Updates and improvements to template
-  * Supervisor: The Users
+* **Strategy Algorithm Engineer**, Xiaohongshu, Dec 2025 - Present
+  * Foundation Models Group, Applied Algorithms, Business Technology
+  * Building unified generative recommendation foundation models across multiple business scenarios
+  * Designed Mixture-of-Experts structures to mitigate parameter interference and negative transfer
+  * Led training and stability tuning with systematic analysis of capacity, expert layout, and training strategy
 
-* Fall 2015: Research Assistant
-  * GitHub University
-  * Duties included: Merging pull requests
-  * Supervisor: Professor Hub
+* **Research Intern (Deep Learning)**, Shenyang Institute of Automation, Chinese Academy of Sciences, Feb 2025 - Jun 2025
+  * Reproduced and trained Action Chunking Transformer (ACT) models for long-sequence modeling studies
+  * Completed local GPU training, logging, and hyperparameter experiments in a practical research workflow
 
-* Summer 2015: Research Assistant
-  * GitHub University
-  * Duties included: Tagging issues
-  * Supervisor: Professor Git
-  
+Projects
+======
+* **UniGenRec**, Sep 2025 - Nov 2025
+  * Unified generative recommendation research toolkit covering tokenization, generative architectures, training, and inference
+  * Designed a modular pipeline for Amazon and MovieLens datasets, embedding generation, multimodal fusion, and sequential modeling
+  * Implemented RQ-VAE, VQ-VAE, R-KMeans, PQ, and OPQ with a unified tokenizer interface
+  * GitHub: [hupeiyu21/UniGenRec](https://github.com/hupeiyu21/UniGenRec)
+
 Skills
 ======
-* Skill 1
-* Skill 2
-  * Sub-skill 2.1
-  * Sub-skill 2.2
-  * Sub-skill 2.3
-* Skill 3
+* Python, PyTorch, Transformers, Linux, Git
+* Recommender Systems, Collaborative Filtering, Sequential Recommendation, Generative Recommendation
+* Literature reading, method reproduction, and turning papers into runnable code
 
 Publications
 ======
   <ul>{% for post in site.publications reversed %}
     {% include archive-single-cv.html %}
   {% endfor %}</ul>
-  
-Talks
+
+Additional
 ======
-  <ul>{% for post in site.talks reversed %}
-    {% include archive-single-talk-cv.html  %}
-  {% endfor %}</ul>
-  
-Teaching
-======
-  <ul>{% for post in site.teaching reversed %}
-    {% include archive-single-cv.html %}
-  {% endfor %}</ul>
-  
-Service and leadership
-======
-* Currently signed in to 43 different slack teams
+* Email: peiyuhu21@163.com
+* Phone: 18562862528
+* GitHub: [github.com/hupeiyu21](https://github.com/hupeiyu21)
+* English: IELTS 6.5 (6.0), GRE 319
+* Comfortable rapidly learning new tools and building small-scale validation experiments when projects demand it

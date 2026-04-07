@@ -1,0 +1,96 @@
+{% include base_path %}
+{% assign item = include.item %}
+{% assign time_text = item.duration %}
+{% if time_text == nil or time_text == "" %}
+  {% if item.start_date and item.end_date %}
+    {% assign time_text = item.start_date | append: " – " | append: item.end_date %}
+  {% elsif item.start_date %}
+    {% assign time_text = item.start_date %}
+  {% elsif item.period %}
+    {% assign time_text = item.period %}
+  {% endif %}
+{% endif %}
+
+{% assign company_name = item.company | default: "Organization" %}
+{% assign role_name = item.role | default: item.title | default: "Role" %}
+{% assign badge_text = company_name | slice: 0 %}
+{% assign has_meta = false %}
+{% if item.location or item.team or item.department or item.tech_stack %}
+  {% assign has_meta = true %}
+{% endif %}
+
+<article class="experience-card">
+  <div class="experience-card__logo">
+    {% if item.logo %}
+      <img
+        src="{% if item.logo contains '://' %}{{ item.logo }}{% else %}{{ item.logo | prepend: base_path }}{% endif %}"
+        alt="{{ company_name }} logo"
+        loading="lazy">
+    {% else %}
+      <div class="experience-card__logo-fallback" aria-hidden="true">{{ badge_text | upcase }}</div>
+    {% endif %}
+  </div>
+
+  <div class="experience-card__body">
+    <div class="experience-card__topline">
+      <div>
+        <h3 class="publication-card__title experience-card__role">{{ role_name }}</h3>
+        <p class="experience-card__company">{{ company_name }}</p>
+      </div>
+      {% if time_text %}
+        <p class="experience-card__time">{{ time_text }}</p>
+      {% endif %}
+    </div>
+
+    {% if has_meta %}
+      <div class="experience-card__meta">
+        {% if item.location %}
+          <span class="experience-chip"><i class="fa fa-location-dot" aria-hidden="true"></i>{{ item.location }}</span>
+        {% endif %}
+        {% if item.team %}
+          <span class="experience-chip"><i class="fa fa-users" aria-hidden="true"></i>{{ item.team }}</span>
+        {% elsif item.department %}
+          <span class="experience-chip"><i class="fa fa-building" aria-hidden="true"></i>{{ item.department }}</span>
+        {% endif %}
+        {% if item.tech_stack %}
+          <span class="experience-chip"><i class="fa fa-code" aria-hidden="true"></i>{{ item.tech_stack | join: ", " | default: item.tech_stack }}</span>
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if item.summary %}
+      <p class="experience-card__summary">{{ item.summary }}</p>
+    {% endif %}
+
+    {% if item.highlights %}
+      <ul class="experience-card__highlights">
+        {% for highlight in item.highlights %}
+          <li>{{ highlight }}</li>
+        {% endfor %}
+      </ul>
+    {% endif %}
+
+    {% if item.website or item.project or item.report %}
+      <div class="experience-card__actions">
+        {% if item.website %}
+          <a class="experience-link" href="{{ item.website }}">
+            <i class="fa fa-arrow-up-right-from-square" aria-hidden="true"></i>
+            <span>Website</span>
+          </a>
+        {% endif %}
+        {% if item.project %}
+          <a class="experience-link" href="{{ item.project }}">
+            <i class="fa fa-diagram-project" aria-hidden="true"></i>
+            <span>Project</span>
+          </a>
+        {% endif %}
+        {% if item.report %}
+          <a class="experience-link" href="{{ item.report }}">
+            <i class="fa fa-file-lines" aria-hidden="true"></i>
+            <span>Report</span>
+          </a>
+        {% endif %}
+      </div>
+    {% endif %}
+  </div>
+</article>

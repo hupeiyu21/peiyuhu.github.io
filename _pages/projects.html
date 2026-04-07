@@ -1,0 +1,18 @@
+---
+layout: archive
+title: "Projects"
+permalink: /projects/
+author_profile: false
+---
+
+<p class="section-intro">Selected research tooling and engineering projects around generative recommendation, semantic tokenization, and reproducible experimentation. The page reuses the same visual card system as publications while emphasizing project status, technical scope, and practical artifacts.</p>
+
+{% include base_path %}
+
+<section class="publications-section">
+  <div class="projects-grid">
+    {% for post in site.portfolio %}
+      {% include project-card.html %}
+    {% endfor %}
+  </div>
+</section>

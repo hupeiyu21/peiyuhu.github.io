@@ -1,0 +1,205 @@
+/* ==========================================================================
+   EXPERIENCE CARDS
+   ========================================================================== */
+
+.experience-stack {
+  display: grid;
+  gap: 1rem;
+}
+
+.experience-stack--homepage {
+  margin-top: 0.2rem;
+}
+
+.experience-card {
+  display: grid;
+  grid-template-columns: 84px minmax(0, 1fr);
+  gap: 1rem;
+  align-items: flex-start;
+  padding: 1rem;
+  border: 1px solid var(--modern-line);
+  border-radius: calc(var(--modern-radius) + 2px);
+  background: var(--modern-surface);
+  box-shadow: var(--modern-shadow-soft);
+  transition: transform 0.22s ease, box-shadow 0.22s ease, border-color 0.22s ease;
+}
+
+.experience-card:hover {
+  transform: translateY(-2px);
+  border-color: var(--modern-line-strong);
+  box-shadow: var(--modern-shadow);
+}
+
+.experience-card__logo {
+  width: 84px;
+  height: 84px;
+}
+
+.experience-card__logo img,
+.experience-card__logo-fallback {
+  width: 100%;
+  height: 100%;
+  border-radius: 22px;
+}
+
+.experience-card__logo img {
+  display: block;
+  object-fit: cover;
+  border: 1px solid var(--modern-line);
+  background: var(--modern-surface-strong);
+}
+
+.experience-card__logo-fallback {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background:
+    linear-gradient(180deg, rgba(255, 255, 255, 0.42), rgba(243, 247, 253, 0.86)),
+    var(--modern-surface-muted);
+  border: 1px solid var(--modern-line);
+  color: var(--modern-text-soft);
+  font-family: "Space Grotesk", "Manrope", sans-serif;
+  font-size: 1.6rem;
+  font-weight: 700;
+}
+
+.experience-card__body {
+  min-width: 0;
+}
+
+.experience-card__topline {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-bottom: 0.5rem;
+}
+
+.experience-card__role {
+  margin: 0 0 0.08rem;
+  font-size: 1.1rem;
+  line-height: 1.25;
+}
+
+.experience-card__company {
+  margin: 0.2rem 0 0;
+  color: var(--modern-text-soft);
+  font-size: 0.95rem;
+  font-weight: 700;
+}
+
+.experience-card__time {
+  margin: 0;
+  white-space: nowrap;
+  color: var(--modern-text-muted);
+  font-size: 0.86rem;
+  font-weight: 700;
+}
+
+.experience-card__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.7rem;
+}
+
+.experience-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.34rem 0.66rem;
+  border: 1px solid var(--modern-line);
+  border-radius: 999px;
+  background: var(--modern-surface-muted);
+  color: var(--modern-text-soft);
+  font-size: 0.76rem;
+  font-weight: 600;
+}
+
+.experience-chip i {
+  color: var(--modern-text-muted);
+  font-size: 0.76rem;
+}
+
+.experience-card__summary {
+  margin: 0 0 0.75rem;
+  color: var(--modern-text-soft);
+  font-size: 0.95rem;
+  line-height: 1.7;
+}
+
+.experience-card__highlights {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.experience-card__highlights li {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 1rem;
+  color: var(--modern-text-soft);
+  font-size: 0.93rem;
+  line-height: 1.75;
+}
+
+.experience-card__highlights li + li {
+  margin-top: 0.45rem;
+}
+
+.experience-card__highlights li::before {
+  content: "";
+  position: absolute;
+  top: 0.72rem;
+  left: 0;
+  width: 0.38rem;
+  height: 0.38rem;
+  border-radius: 50%;
+  background: var(--modern-accent);
+}
+
+.experience-card__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+
+.experience-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.42rem;
+  padding: 0.46rem 0.74rem;
+  border: 1px solid var(--modern-line);
+  border-radius: 999px;
+  background: var(--modern-surface-strong);
+  color: var(--modern-text);
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+.experience-link:hover {
+  color: var(--modern-accent);
+  border-color: var(--modern-line-strong);
+}
+
+@media (max-width: 767px) {
+  .experience-card {
+    grid-template-columns: 1fr;
+  }
+
+  .experience-card__logo {
+    width: 68px;
+    height: 68px;
+  }
+
+  .experience-card__topline {
+    flex-direction: column;
+    gap: 0.4rem;
+  }
+
+  .experience-card__time {
+    white-space: normal;
+  }
+}

@@ -1,0 +1,77 @@
+{% include base_path %}
+{% assign item = include.item %}
+{% assign school_name = item.school_en | default: item.school | default: "Institution" %}
+{% assign degree_name = item.degree | default: "Degree" %}
+{% assign major_name = item.major | default: item.program %}
+{% assign time_text = item.duration %}
+{% if time_text == nil or time_text == "" %}
+  {% if item.start_date and item.end_date %}
+    {% assign time_text = item.start_date | append: " - " | append: item.end_date %}
+  {% elsif item.start_date %}
+    {% assign time_text = item.start_date %}
+  {% endif %}
+{% endif %}
+{% assign badge_text = school_name | slice: 0 %}
+
+<article class="education-card">
+  <div class="education-card__logo{% if item.logo_shape == 'wide' %} education-card__logo--wide{% endif %}">
+    {% if item.logo %}
+      <img
+        src="{% if item.logo contains '://' %}{{ item.logo }}{% else %}{{ item.logo | prepend: base_path }}{% endif %}"
+        alt="{{ school_name }} logo"
+        loading="lazy">
+    {% else %}
+      <div class="education-card__logo-fallback" aria-hidden="true">{{ badge_text | upcase }}</div>
+    {% endif %}
+  </div>
+
+  <div class="education-card__body">
+    <div class="education-card__topline">
+      <div>
+        <h3 class="publication-card__title education-card__school">{{ school_name }}</h3>
+        {% if item.school and item.school != school_name %}
+          <p class="education-card__school-alt">{{ item.school }}</p>
+        {% endif %}
+      </div>
+      {% if time_text %}
+        <p class="education-card__time">{{ time_text }}</p>
+      {% endif %}
+    </div>
+
+    <p class="education-card__degree">
+      {{ degree_name }}{% if major_name %}<span class="education-card__degree-sep">in</span>{{ major_name }}{% endif %}
+    </p>
+
+    {% if item.gpa or item.ranking or item.awards %}
+      <div class="education-card__badges">
+        {% if item.gpa %}
+          <span class="education-badge">{{ item.gpa }}</span>
+        {% endif %}
+        {% if item.ranking %}
+          <span class="education-badge">{{ item.ranking }}</span>
+        {% endif %}
+        {% if item.awards %}
+          {% assign awards = item.awards %}
+          {% if awards.first %}
+            {% for award in awards %}
+              <span class="education-badge">{{ award }}</span>
+            {% endfor %}
+          {% else %}
+            <span class="education-badge">{{ awards }}</span>
+          {% endif %}
+        {% endif %}
+      </div>
+    {% endif %}
+
+    {% if item.summary %}
+      <p class="education-card__summary">{{ item.summary }}</p>
+    {% endif %}
+
+    {% if item.courses %}
+      <div class="education-card__courses">
+        <span class="education-card__courses-label">Selected coursework</span>
+        <p>{{ item.courses | join: ", " | default: item.courses }}</p>
+      </div>
+    {% endif %}
+  </div>
+</article>
