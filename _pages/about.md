@@ -92,31 +92,6 @@ news_items:
       <div class="about-showcase">
         <div class="about-showcase__main">
           <p>I am currently working on foundation-model-driven recommendation systems and practical research tooling. My recent work explores how semantic representations, customized retrieval, and unified generative backbones can improve recommendation quality, transferability, and system robustness.</p>
-          <div class="about-actions">
-            <a class="btn btn--inverse about-actions__button" href="{{ base_path }}/publications/">
-              <i class="fa-solid fa-book-open" aria-hidden="true"></i>
-              <span>View Publications</span>
-            </a>
-            <a class="btn btn--inverse about-actions__button" href="{{ base_path }}/projects/">
-              <i class="fa-solid fa-diagram-project" aria-hidden="true"></i>
-              <span>See Projects</span>
-            </a>
-          </div>
-        </div>
-
-        <div class="about-showcase__stats" aria-hidden="true">
-          <div class="about-stat">
-            <span class="about-stat__label">Current Focus</span>
-            <strong class="about-stat__value">GenRec + Foundation Models</strong>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat__label">Research Lens</span>
-            <strong class="about-stat__value">Semantics, Retrieval, Robustness</strong>
-          </div>
-          <div class="about-stat">
-            <span class="about-stat__label">Background</span>
-            <strong class="about-stat__value">Recommendation, LLMs, Multimodal Systems</strong>
-          </div>
         </div>
       </div>
 

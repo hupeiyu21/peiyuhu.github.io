@@ -2,52 +2,15 @@
 
 {% assign typing_lines = page.typing_lines %}
 
-<section class="hero-panel" data-hero-tilt>
-  <div class="hero-panel__grid"></div>
-  <div class="hero-panel__glow"></div>
-  <div class="hero-panel__noise"></div>
-  <div class="hero-panel__orb hero-panel__orb--one"></div>
-  <div class="hero-panel__orb hero-panel__orb--two"></div>
-
+<section class="hero-panel hero-panel--simple">
   <div class="hero-panel__content">
     <div class="hero-panel__main">
-      <div class="hero__eyebrow">Generative AI · Recommenders · Systems</div>
-      <div class="hero__signal">
-        <span class="hero__signal-badge">Researcher / Engineer</span>
-        <span class="hero__signal-line"></span>
-        <span class="hero__signal-text">Building semantic recommendation systems with LLMs, tokenization, and practical ML infrastructure.</span>
-      </div>
+      <div class="hero__eyebrow">Academic homepage</div>
       <h1 class="hero__title">{{ site.author.name | default: site.title }}</h1>
-      <p class="hero__subtitle">{{ page.tagline | default: site.description }}</p>
-
-      <div
-        class="hero__typing"
-        data-typing-lines='{{ typing_lines | jsonify | escape }}'
-        data-typing-speed="80"
-        data-typing-delete-speed="36"
-        data-typing-pause="1500">
-        <span class="hero__typing-prefix">$</span>
-        <span class="hero__typing-text">Generative Recommendation Researcher</span>
-        <span class="hero__typing-cursor" aria-hidden="true"></span>
-      </div>
-
-      <p class="hero__lede">
-        {{ site.author.bio | default: site.description }}
-      </p>
-
-      <div class="hero__tags">
-        {% for topic in page.research_interests %}
-          <span class="hero__tag">{{ topic }}</span>
-        {% endfor %}
-      </div>
+      <p class="hero__subtitle">Generative recommendation researcher working on LLM-powered recommender systems, semantic modeling, and multimodal AI.</p>
+      <p class="hero__lede">{{ site.author.bio | default: site.description }}</p>
 
       <div class="hero__actions">
-        {% if site.author.googlescholar %}
-          <a class="btn hero-action hero-action--scholar" href="{{ site.author.googlescholar }}">
-            <i class="ai ai-google-scholar" aria-hidden="true"></i>
-            <span>Google Scholar</span>
-          </a>
-        {% endif %}
         {% if site.author.github %}
           <a class="btn btn--inverse hero-action hero-action--github" href="https://github.com/{{ site.author.github }}">
             <i class="fab fa-github" aria-hidden="true"></i>
@@ -60,73 +23,11 @@
             <span>Email</span>
           </a>
         {% endif %}
-        {% if site.author.zhihu %}
-          <a class="btn btn--inverse hero-action hero-action--zhihu" href="https://www.zhihu.com/people/{{ site.author.zhihu }}">
-            <i class="fab fa-zhihu" aria-hidden="true"></i>
-            <span>Zhihu</span>
-          </a>
-        {% endif %}
-        {% if site.author.xiaohongshu %}
-          <a class="btn btn--inverse hero-action hero-action--xhs" href="{{ site.author.xiaohongshu }}">
-            <span class="hero-action__brand hero-action__brand--xhs" aria-hidden="true">X</span>
-            <span>Xiaohongshu</span>
-          </a>
-        {% endif %}
         <a class="btn btn--inverse hero-action hero-action--cv" href="{{ base_path }}/cv/">
           <i class="fa-solid fa-file-lines" aria-hidden="true"></i>
           <span>CV</span>
         </a>
       </div>
     </div>
-
-    <aside class="hero-panel__aside" aria-hidden="true">
-      <div class="hero-lab hero-lab--terminal" data-console-tilt>
-        <div class="hero-lab__bar">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-        <div class="hero-lab__body">
-          <div class="hero-lab__headerline">
-            <span class="hero-lab__caption">Research Console</span>
-            <span class="hero-lab__status">Online</span>
-          </div>
-
-          <div class="hero-console">
-            <div class="hero-console__block">
-              <span class="hero-console__label">focus.current</span>
-              <strong class="hero-console__primary">GenRec Foundation Model</strong>
-            </div>
-
-            <div class="hero-console__block">
-              <span class="hero-console__label">runtime.stack</span>
-              <div class="hero-console__badges">
-                <span>PyTorch</span>
-                <span>Transformers</span>
-                <span>MoE</span>
-              </div>
-            </div>
-
-            <div class="hero-console__block">
-              <span class="hero-console__label">current.snapshot</span>
-              <div class="hero-console__badges">
-                <span>LLM4Rec</span>
-                <span>Research + Infra</span>
-              </div>
-            </div>
-
-            <div class="hero-console__block">
-              <span class="hero-console__label">active.topics</span>
-              <div class="hero-console__grid">
-                <span>Semantic Tokenization</span>
-                <span>RAG for RecSys</span>
-                <span>Multimodal RecSys</span>
-                <span>Unified Backbone</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </aside>
   </div>
 </section>
